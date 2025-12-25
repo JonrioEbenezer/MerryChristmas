@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merry ChristmasMyLove</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Musik -->
+  <audio id="bgMusic" preload="auto" loop>
+    <source src="./We%20Wish%20You%20a%20Merry%20Christmas%20Christmas%20Music%20Christmas%20Instrumental%20Merry%20Christmas%20Tune.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Salju -->
+  <canvas id="snowCanvas" aria-hidden="true"></canvas>
+
+  <!-- SCREEN 1 -->
+  <section class="screen" id="screen1">
+    <div class="stage">
+      <div class="title">For someone special</div>
+
+      <div class="giftArea" id="giftTap" role="button" tabindex="0" aria-label="Tap gift">
+        <div class="bubble">Tap me!</div>
+
+        <svg class="gift" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="26" y="56" width="68" height="50" rx="12" fill="#fff"
+                stroke="var(--red)" stroke-width="7" stroke-linejoin="round"/>
+          <rect x="22" y="44" width="76" height="18" rx="10" fill="#fff"
+                stroke="var(--red)" stroke-width="7" stroke-linejoin="round"/>
+          <path d="M60 44V106" fill="none"
+                stroke="var(--red)" stroke-width="7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 53H98" fill="none"
+                stroke="var(--red)" stroke-width="7"
+                stroke-linecap="round"/>
+          <path d="M60 44
+                   C52 28, 34 26, 30 36
+                   C26 46, 38 54, 60 50"
+                fill="#fff"
+                stroke="var(--red)" stroke-width="7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M60 44
+                   C68 28, 86 26, 90 36
+                   C94 46, 82 54, 60 50"
+                fill="#fff"
+                stroke="var(--red)" stroke-width="7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="44" r="6" fill="#fff"
+                  stroke="var(--red)" stroke-width="7"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2 -->
+  <section class="screen hidden" id="screen2">
+    <div class="paper">
+      <img class="snowmanImg" src="./snowman.png" alt="Snowman">
+      <div class="headline">
+        This Christmas,<br/>
+        something special for<br/>
+        you
+      </div>
+      <button class="btn" id="openBtn" type="button">Open it</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 3 -->
+  <section class="screen hidden" id="screen3">
+    <div class="paper">
+      <div class="headline">Just for you</div>
+      <div class="sub">I don't need a gift, because...</div>
+
+      <div class="cards" aria-label="Flip cards">
+        <div class="cardWrap card1">
+          <div class="flipCard" data-id="1">
+            <div class="face front"><div class="heart">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-4.6-9.6-8.3C.4 9.6 2 6.5 5.4 6.1c1.8-.2 3.4.7 4.3 2 1-1.3 2.6-2.2 4.3-2 3.4.4 5 3.5 3 6.6C19 16.4 12 21 12 21z"/>
+              </svg>
+            </div></div>
+            <div class="face back">You</div>
+          </div>
+        </div>
+
+        <div class="cardWrap card2">
+          <div class="flipCard" data-id="2">
+            <div class="face front"><div class="heart">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-4.6-9.6-8.3C.4 9.6 2 6.5 5.4 6.1c1.8-.2 3.4.7 4.3 2 1-1.3 2.6-2.2 4.3-2 3.4.4 5 3.5 3 6.6C19 16.4 12 21 12 21z"/>
+              </svg>
+            </div></div>
+            <div class="face back">are</div>
+          </div>
+        </div>
+
+        <div class="cardWrap card3">
+          <div class="flipCard" data-id="3">
+            <div class="face front"><div class="heart">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-4.6-9.6-8.3C.4 9.6 2 6.5 5.4 6.1c1.8-.2 3.4.7 4.3 2  1-1.3 2.6-2.2 4.3-2 3.4.4 5 3.5 3 6.6C19 16.4 12 21 12 21z"/>
+              </svg>
+            </div></div>
+            <div class="face back">my</div>
+          </div>
+        </div>
+
+        <div class="cardWrap card4">
+          <div class="flipCard" data-id="4">
+            <div class="face front"><div class="heart">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-4.6-9.6-8.3C.4 9.6 2 6.5 5.4 6.1c1.8-.2 3.4.7 4.3 2  1-1.3 2.6-2.2 4.3-2 3.4.4 5 3.5 3 6.6C19 16.4 12 21 12 21z"/>
+              </svg>
+            </div></div>
+            <div class="face back">cutest</div>
+          </div>
+        </div>
+
+        <div class="cardWrap card5">
+          <div class="flipCard" data-id="5">
+            <div class="face front"><div class="heart">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-4.6-9.6-8.3C.4 9.6 2 6.5 5.4 6.1c1.8-.2 3.4.7 4.3 2  1-1.3 2.6-2.2 4.3-2 3.4.4 5 3.5 3 6.6C19 16.4 12 21 12 21z"/>
+              </svg>
+            </div></div>
+            <div class="face back">gift 🎁</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4 -->
+  <section class="screen hidden" id="screen4">
+    <div class="paper">
+      <div class="finalTitle">
+        <span class="big">Merry Christmas</span>
+        <span class="small">to my Cutiepie</span>
+      </div>
+
+      <div class="finalStack">
+        <!-- ✅ Ini card yang tadi kosong: sekarang diisi pohonnatal.jpg -->
+        <div class="finalCard santaLayer" id="santaLayer" role="button" tabindex="0" aria-label="Tap to read">
+          <img class="santaBg" src="./pohonnatal.jpg" alt="" aria-hidden="true">
+          <div class="ribbon">Tap to read</div>
+
+          <!-- gif (kecil) di bawah kiri seperti contoh -->
+          <img class="miniGif" src="./christmas-holiday.gif" alt="gif decoration">
+        </div>
+
+        <!-- Letter -->
+        <div class="finalCard letterLayer" id="letterLayer" aria-label="Letter">
+          <div class="letterScene">
+            <img class="letterBg" src="./pohonnatal.jpg" alt="" aria-hidden="true">
+            <div class="letterOverlay"></div>
+
+            <img class="letterGif" src="./christmas-holiday.gif" alt="gif">
+
+            <div class="letterBox">
+              <h4>This Christmas...</h4>
+              <p>Untuk natal tahun ini aku sangat bersyukur bertemu dengan kamu sayangg.</p>
+              <p>Semoga natal tahun ini dan seterusnya kita tetap bersama dan selalu menjadi pacar yang baik buat kita berdua.</p>
+              <p>Maafin aku ya kalau ada salah, semoga kedepannya kita bisa jadi lebih baik lagi.</p>
+              <p>Merry Christmas, sayangggggggg🎄✨</p>
+
+              <div class="photoGrid" aria-label="Photos">
+                <img src="./img-oralit.png" alt="Oralit">
+                <img src="./img-pompa.png" alt="Pompa">
+                <img src="./img-cake.png" alt="Cake">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

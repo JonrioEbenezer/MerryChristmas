@@ -1,0 +1,386 @@
+:root{
+  --red:#d84a4a;
+  --text:#2f2f2f;
+
+  --sky: rgba(169,217,255,.22);
+  --grid: rgba(70,120,200,.14);
+
+  --btn1:#22b0ff;
+  --btn2:#1a7bff;
+
+  --cardPink:#fde3e6;
+  --heart:#ff5b7d;
+
+  --paperW: min(560px, 92vw);
+  --paperR: clamp(18px, 4vw, 26px);
+  --paperP: clamp(18px, 4vw, 26px);
+
+  --card: clamp(92px, 24vw, 130px);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  overflow:hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  background:
+    radial-gradient(45vmax 35vmax at 6% 50%, var(--sky), transparent 65%),
+    radial-gradient(45vmax 35vmax at 94% 50%, var(--sky), transparent 65%),
+    radial-gradient(40vmax 30vmax at 50% 12%, rgba(169,217,255,.10), transparent 70%),
+    #fff;
+}
+
+/* Salju */
+#snowCanvas{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.screen{
+  position:fixed; inset:0;
+  display:grid;
+  place-items:center;
+  padding: clamp(16px, 4vw, 24px);
+  z-index:2;
+  opacity:1;
+  transform: scale(1);
+  transition: opacity .32s ease, transform .32s ease;
+}
+.hidden{ opacity:0; transform: scale(.985); pointer-events:none; }
+
+.paper{
+  width: var(--paperW);
+  border-radius: var(--paperR);
+  background:
+    repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 22px),
+    rgba(255,255,255,.92);
+  box-shadow: 0 24px 70px rgba(0,0,0,.15);
+  padding: var(--paperP);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.headline{
+  margin: 10px 0 18px;
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(30px, 5.2vw, 54px);
+  line-height: 1.05;
+  color: #3a3a3a;
+}
+.sub{
+  margin-top:-10px;
+  margin-bottom: 22px;
+  color: rgba(0,0,0,.55);
+  font-weight: 600;
+  font-size: clamp(12px, 2.7vw, 14px);
+}
+
+.btn{
+  appearance:none;
+  border:none;
+  cursor:pointer;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--btn1), var(--btn2));
+  color:#fff;
+  font-weight:800;
+  font-size:16px;
+  box-shadow: 0 16px 28px rgba(29,161,255,.25);
+  transition: transform .12s ease;
+}
+.btn:active{ transform: scale(.98); }
+
+/* Screen 1 */
+.stage{
+  width:min(1100px, 96vw);
+  height:min(72vh, 700px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap: clamp(14px, 4vh, 28px);
+  position:relative;
+}
+.title{
+  font-family: "Dancing Script", cursive;
+  font-weight:700;
+  font-size: clamp(32px, 5vw, 60px);
+  color: var(--text);
+  white-space:nowrap;
+  user-select:none;
+  text-align:center;
+  padding: 0 10px;
+}
+
+.giftArea{
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  user-select:none;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.12));
+  animation: float 2.8s ease-in-out infinite;
+  position:relative;
+}
+@keyframes float{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-10px) } }
+
+.bubble{
+  position:absolute;
+  top:-24px;
+  right:-18px;
+  background:#fff;
+  border:2px solid rgba(216,74,74,.35);
+  padding:8px 14px;
+  border-radius:999px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+  font-weight:800;
+  color: var(--red);
+  font-size: 14px;
+}
+.bubble:after{
+  content:"";
+  position:absolute;
+  bottom:-9px;
+  left:18px;
+  width:16px; height:16px;
+  background:#fff;
+  border-right:2px solid rgba(216,74,74,.35);
+  border-bottom:2px solid rgba(216,74,74,.35);
+  transform: rotate(45deg);
+  box-shadow: 6px 6px 14px rgba(0,0,0,.06);
+}
+
+.gift{
+  width: clamp(110px, 22vw, 160px);
+  height: auto;
+  transition: transform .12s ease;
+}
+.giftArea:active .gift{ transform: scale(.97); }
+
+.snowmanImg{
+  width: clamp(70px, 16vw, 90px);
+  height: auto;
+  display:block;
+  margin: 2px auto 8px;
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.10));
+}
+
+/* Cards */
+.cards{
+  position: relative;
+  width: min(430px, 92vw);
+  height: calc(var(--card) * 2.15);
+  margin: 12px auto 0;
+}
+.cardWrap{ position:absolute; width: var(--card); height: var(--card); perspective: 1100px; }
+.card1{ left: 8%;  top: 20%; transform: rotate(-8deg); }
+.card2{ left: 36%; top: 20%; transform: rotate(0deg);  }
+.card3{ left: 64%; top: 20%; transform: rotate(8deg);  }
+.card4{ left: 22%; top: 58%; transform: rotate(-6deg); }
+.card5{ left: 52%; top: 58%; transform: rotate(6deg);  }
+
+.flipCard{
+  width:100%; height:100%;
+  position:relative;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.2,.9,.2,1);
+  cursor:pointer;
+  user-select:none;
+}
+.flipCard.flipped{ transform: rotateY(-180deg); }
+
+.face{
+  position:absolute; inset:0;
+  border-radius: 6px;
+  backface-visibility: hidden;
+  background: var(--cardPink);
+  border: clamp(6px, 1.6vw, 8px) solid rgba(255,255,255,.92);
+  box-shadow: 0 14px 24px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.04);
+  display:grid; place-items:center;
+}
+.heart svg{ width: 26px; height: 26px; fill: var(--heart); }
+.back{
+  transform: rotateY(180deg);
+  font-weight: 800;
+  color: rgba(0,0,0,.60);
+  font-size: clamp(14px, 3.8vw, 18px);
+  padding: 8px;
+}
+
+/* Screen 4 */
+.finalTitle{
+  font-family: "Dancing Script", cursive;
+  color:#3a3a3a;
+  margin: 6px 0 14px;
+  line-height: 1;
+}
+.finalTitle .big{ font-size: clamp(38px, 6vw, 64px); display:block; }
+.finalTitle .small{ font-size: clamp(24px, 4.4vw, 44px); display:block; margin-top: 4px; }
+
+.finalStack{
+  width: min(420px, 90vw);
+  aspect-ratio: 1 / 1;
+  margin: 8px auto 0;
+  position: relative;
+  display:grid;
+  place-items:center;
+}
+
+.finalCard{
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow:hidden;
+  box-shadow: 0 18px 38px rgba(0,0,0,.14);
+  background:#fff;
+  position:absolute;
+  inset:0;
+}
+
+/* ✅ Santa layer sekarang ada background gambar */
+.santaLayer{
+  cursor:pointer;
+  user-select:none;
+  transform: translateY(0);
+  transition: transform .75s cubic-bezier(.2,.9,.2,1), opacity .35s ease;
+  z-index: 3;
+}
+.santaLayer.slideDown{
+  transform: translateY(120%);
+  opacity: 0;
+  pointer-events:none;
+}
+
+.santaBg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit: cover;      /* penuh card */
+  object-position: center;
+  z-index: 1;
+}
+
+/* sedikit overlay supaya enak dilihat */
+.santaLayer::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,.18);
+  z-index: 2;
+}
+
+.ribbon{
+  position:absolute;
+  top:14px;
+  right:14px;
+  background: #e53935;
+  color:#fff;
+  font-weight:800;
+  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  z-index: 5;
+}
+.ribbon:after{
+  content:"";
+  position:absolute;
+  left:-10px;
+  top:50%;
+  transform: translateY(-50%);
+  border-width: 10px 10px 10px 0;
+  border-style: solid;
+  border-color: transparent #e53935 transparent transparent;
+}
+
+/* gif kecil bawah kiri */
+.miniGif{
+  position:absolute;
+  left: 14px;
+  bottom: 12px;
+  width: clamp(54px, 14vw, 90px);
+  height: auto;
+  opacity: .98;
+  z-index: 6;
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,.15));
+}
+
+/* Letter layer */
+.letterLayer{
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .45s ease, transform .45s ease;
+  z-index: 2;
+  pointer-events:none;
+}
+.letterLayer.show{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events:auto;
+}
+
+.letterScene{ position:absolute; inset:0; }
+.letterBg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+.letterOverlay{
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,.40);
+}
+
+.letterGif{
+  position:absolute;
+  width: clamp(82px, 18vw, 110px);
+  top: -14px;
+  left: 12px;
+  pointer-events:none;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.18));
+  z-index: 3;
+}
+
+.letterBox{
+  position:absolute;
+  left: 16px;
+  right: 16px;
+  top: clamp(68px, 16vw, 80px);
+  bottom: 16px;
+  padding: 18px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 16px 28px rgba(0,0,0,.12);
+  overflow:auto;
+  text-align:left;
+  color: rgba(0,0,0,.70);
+  font-weight: 600;
+  line-height: 1.45;
+  z-index: 4;
+}
+
+.photoGrid{
+  margin-top: 14px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.photoGrid img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 12px 20px rgba(0,0,0,.10);
+  border: 2px solid rgba(255,255,255,.7);
+}
